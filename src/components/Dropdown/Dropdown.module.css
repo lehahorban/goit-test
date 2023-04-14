@@ -1,0 +1,22 @@
+.filter {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.select {
+  margin-left: 8px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.option {
+  background-color: #fff;
+  color: #333;
+}
+
+.option:hover {
+  background-color: #f2f2f2;
+}

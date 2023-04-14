@@ -1,0 +1,25 @@
+.container {
+  margin: 0 auto;
+  max-width: 1280px;
+  padding: 0 60px;
+}
+.btnWrapp {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btnBack {
+  background-color: #464d53;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btnBack:hover {
+  background-color: #063261;
+}

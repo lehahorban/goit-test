@@ -1,0 +1,54 @@
+.navbarContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.header {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+}
+
+.leftHeader {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  color: white;
+  font-size: 3rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-right: 1rem;
+}
+
+.rightHeader {
+  display: flex;
+  align-items: center;
+}
+
+.tweetsLink {
+  color: white;
+  font-size: 1.5rem;
+  text-decoration: none;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease-in-out;
+}
+
+.tweetsLink:hover {
+  transform: translateY(-2px);
+}
+
+.tweetsContainer {
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
