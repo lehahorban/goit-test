@@ -1,6 +1,7 @@
 @import url("normalize.css");
 body {
   font-family: "Montserrat", sans-serif;
+  background: linear-gradient(to right, #2193b0, #6dd5ed);
 }
 html,
 body,

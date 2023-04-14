@@ -15,6 +15,7 @@ const UserCard = () => {
   const [itemsPerPage, setItemsPerPage] = useState(9);
   const [filteredTweet, setFilteredTweet] = useState([]);
   const [isActive, setIsActive] = useState(false);
+
   const currentPage = 1;
   const indexOfLastItem = itemsPerPage * currentPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -69,6 +70,7 @@ const UserCard = () => {
       return users;
     }
   };
+  console.log(isActive);
 
   return (
     <div className={styles.container}>
