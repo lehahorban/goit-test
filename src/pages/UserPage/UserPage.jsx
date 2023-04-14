@@ -53,7 +53,7 @@ const UserPage = ({
           ))}
         </ul>
       )}
-      {!isLoading && itemsPerPage < users.length && (
+      {!isLoading && itemsPerPage < users.length && !isActive && (
         <button
           onClick={handleLoadMore}
           className={styles.loadMoreBtn}
