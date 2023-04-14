@@ -42,18 +42,37 @@ const UserCard = () => {
       setIsLoading(false);
       localStorage.setItem("users", JSON.stringify(users));
     }
-  }, [users, currentData]);
+  }, [users]);
 
   const hendleClick = (id, following) => {
-    const user = users.find((el) => el.id === id);
+    const userIndex = users.findIndex((el) => el.id === id);
+    const tweetIndex = filteredTweet.findIndex((tweet) => tweet.id === id);
     if (!following) {
-      const follow = user.followers + 1;
-      dispatch(updateUserById({ id: user.id, follow }));
+      const follow = users[userIndex].followers + 1;
+      dispatch(updateUserById({ id: users[userIndex].id, follow }));
       dispatch(updateFollowingById({ id, following: true }));
+      if (tweetIndex >= 0) {
+        const newFilteredTweet = [...filteredTweet];
+        newFilteredTweet[tweetIndex] = {
+          ...newFilteredTweet[tweetIndex],
+          following: true,
+          followers: newFilteredTweet[tweetIndex].followers + 1,
+        };
+        setFilteredTweet(newFilteredTweet);
+      }
     } else {
-      const follow = user.followers - 1;
-      dispatch(updateUserById({ id: user.id, follow }));
+      const follow = users[userIndex].followers - 1;
+      dispatch(updateUserById({ id: users[userIndex].id, follow }));
       dispatch(updateFollowingById({ id, following: false }));
+      if (tweetIndex >= 0) {
+        const newFilteredTweet = [...filteredTweet];
+        newFilteredTweet[tweetIndex] = {
+          ...newFilteredTweet[tweetIndex],
+          following: false,
+          followers: newFilteredTweet[tweetIndex].followers - 1,
+        };
+        setFilteredTweet(newFilteredTweet);
+      }
     }
   };
 
@@ -70,7 +89,6 @@ const UserCard = () => {
       return users;
     }
   };
-  console.log(isActive);
 
   return (
     <div className={styles.container}>
