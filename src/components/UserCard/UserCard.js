@@ -44,35 +44,39 @@ const UserCard = () => {
     }
   }, [users]);
 
-  const hendleClick = (id, following) => {
-    const userIndex = users.findIndex((el) => el.id === id);
-    const tweetIndex = filteredTweet.findIndex((tweet) => tweet.id === id);
-    if (!following) {
-      const follow = users[userIndex].followers + 1;
-      dispatch(updateUserById({ id: users[userIndex].id, follow }));
-      dispatch(updateFollowingById({ id, following: true }));
-      if (tweetIndex >= 0) {
-        const newFilteredTweet = [...filteredTweet];
-        newFilteredTweet[tweetIndex] = {
-          ...newFilteredTweet[tweetIndex],
-          following: true,
-          followers: newFilteredTweet[tweetIndex].followers + 1,
-        };
-        setFilteredTweet(newFilteredTweet);
+  const hendleClick = async (id, following) => {
+    try {
+      const userIndex = users.findIndex((el) => el.id === id);
+      const tweetIndex = filteredTweet.findIndex((tweet) => tweet.id === id);
+      if (!following) {
+        const follow = users[userIndex].followers + 1;
+        await dispatch(updateUserById({ id: users[userIndex].id, follow }));
+        await dispatch(updateFollowingById({ id, following: true }));
+        if (tweetIndex >= 0) {
+          const newFilteredTweet = [...filteredTweet];
+          newFilteredTweet[tweetIndex] = {
+            ...newFilteredTweet[tweetIndex],
+            following: true,
+            followers: newFilteredTweet[tweetIndex].followers + 1,
+          };
+          setFilteredTweet(newFilteredTweet);
+        }
+      } else {
+        const follow = users[userIndex].followers - 1;
+        await dispatch(updateUserById({ id: users[userIndex].id, follow }));
+        await dispatch(updateFollowingById({ id, following: false }));
+        if (tweetIndex >= 0) {
+          const newFilteredTweet = [...filteredTweet];
+          newFilteredTweet[tweetIndex] = {
+            ...newFilteredTweet[tweetIndex],
+            following: false,
+            followers: newFilteredTweet[tweetIndex].followers - 1,
+          };
+          setFilteredTweet(newFilteredTweet);
+        }
       }
-    } else {
-      const follow = users[userIndex].followers - 1;
-      dispatch(updateUserById({ id: users[userIndex].id, follow }));
-      dispatch(updateFollowingById({ id, following: false }));
-      if (tweetIndex >= 0) {
-        const newFilteredTweet = [...filteredTweet];
-        newFilteredTweet[tweetIndex] = {
-          ...newFilteredTweet[tweetIndex],
-          following: false,
-          followers: newFilteredTweet[tweetIndex].followers - 1,
-        };
-        setFilteredTweet(newFilteredTweet);
-      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
