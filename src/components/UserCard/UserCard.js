@@ -108,6 +108,7 @@ const UserCard = () => {
           onFilterChange={onFilterChange}
           setFilteredTweet={setFilteredTweet}
           setIsActive={setIsActive}
+          filteredTweet={filteredTweet}
         />
       </div>
       <UserPage

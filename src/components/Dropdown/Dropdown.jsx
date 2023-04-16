@@ -9,6 +9,7 @@ const Dropdown = ({ onFilterChange, setFilteredTweet, setIsActive }) => {
   const handleFilterChange = (event) => {
     const selectedFilter = event.target.value;
     setFilter(selectedFilter);
+
     const filterArr = onFilterChange(selectedFilter);
 
     if (selectedFilter === "show_all") {
