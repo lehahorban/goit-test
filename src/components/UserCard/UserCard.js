@@ -28,19 +28,6 @@ const UserCard = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    let newData = users;
-
-    if (isActive) {
-      if (toggleFilter === "following") {
-        newData = users.filter((item) => item.following === true);
-      } else if (toggleFilter === "follow") {
-        newData = users.filter((item) => item.following !== true);
-      }
-    }
-    setFilteredData(newData);
-  }, [users, isActive, toggleFilter]);
-
-  useEffect(() => {
     const storedUsers = localStorage.getItem("users");
     if (storedUsers) {
       dispatch({ type: "SET_USERS", payload: JSON.parse(storedUsers) });
@@ -55,6 +42,19 @@ const UserCard = () => {
       localStorage.setItem("users", JSON.stringify(users));
     }
   }, [users]);
+
+  useEffect(() => {
+    let newData = users;
+
+    if (isActive) {
+      if (toggleFilter === "following") {
+        newData = users.filter((item) => item.following === true);
+      } else if (toggleFilter === "follow") {
+        newData = users.filter((item) => item.following !== true);
+      }
+    }
+    setFilteredData(newData);
+  }, [users, isActive, toggleFilter]);
 
   const handleLoadMore = () => {
     setItemsPerPage(itemsPerPage + 9);
