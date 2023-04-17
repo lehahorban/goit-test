@@ -2,13 +2,19 @@ import React, { useState } from "react";
 import styles from "./Dropdown.module.css";
 import { useSelector } from "react-redux";
 
-const Dropdown = ({ onFilterChange, setFilteredTweet, setIsActive }) => {
+const Dropdown = ({
+  onFilterChange,
+  setFilteredTweet,
+  setIsActive,
+  setToggleFilter,
+}) => {
   const [filter, setFilter] = useState("show_all");
   const { users } = useSelector((state) => state.user);
 
   const handleFilterChange = (event) => {
     const selectedFilter = event.target.value;
     setFilter(selectedFilter);
+    setToggleFilter(selectedFilter);
 
     const filterArr = onFilterChange(selectedFilter);
 

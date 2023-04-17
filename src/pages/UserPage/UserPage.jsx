@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./UserPage.module.css";
 import logo from "../../images/Logo.png";
 import homeImage from "../../images/picture.png";
@@ -6,16 +5,13 @@ import rectangle from "../../images/Rectangle.png";
 
 const UserPage = ({
   isLoading,
-  currentData,
   handleLoadMore,
   hendleClick,
   users,
   itemsPerPage,
-  filteredTweet,
   isActive,
+  data,
 }) => {
-  const data = isActive ? filteredTweet : currentData;
-
   return (
     <div className={styles.container}>
       {isLoading ? (

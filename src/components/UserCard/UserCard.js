@@ -15,18 +15,30 @@ const UserCard = () => {
   const [itemsPerPage, setItemsPerPage] = useState(9);
   const [filteredTweet, setFilteredTweet] = useState([]);
   const [isActive, setIsActive] = useState(false);
+  const [toggleFilter, setToggleFilter] = useState("show_all");
+  const [filteredData, setFilteredData] = useState([]);
 
   const currentPage = 1;
   const indexOfLastItem = itemsPerPage * currentPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentData = users.slice(indexOfFirstItem, indexOfLastItem);
+  const data = isActive ? filteredData : currentData;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleLoadMore = () => {
-    setItemsPerPage(itemsPerPage + 9);
-  };
+  useEffect(() => {
+    let newData = users;
+
+    if (isActive) {
+      if (toggleFilter === "following") {
+        newData = users.filter((item) => item.following === true);
+      } else if (toggleFilter === "follow") {
+        newData = users.filter((item) => item.following !== true);
+      }
+    }
+    setFilteredData(newData);
+  }, [users, isActive, toggleFilter]);
 
   useEffect(() => {
     const storedUsers = localStorage.getItem("users");
@@ -43,6 +55,10 @@ const UserCard = () => {
       localStorage.setItem("users", JSON.stringify(users));
     }
   }, [users]);
+
+  const handleLoadMore = () => {
+    setItemsPerPage(itemsPerPage + 9);
+  };
 
   const hendleClick = async (id, following) => {
     try {
@@ -109,6 +125,7 @@ const UserCard = () => {
           setFilteredTweet={setFilteredTweet}
           setIsActive={setIsActive}
           filteredTweet={filteredTweet}
+          setToggleFilter={setToggleFilter}
         />
       </div>
       <UserPage
@@ -120,6 +137,8 @@ const UserCard = () => {
         itemsPerPage={itemsPerPage}
         filteredTweet={filteredTweet}
         isActive={isActive}
+        toggleFilter={toggleFilter}
+        data={data}
       />
     </div>
   );
