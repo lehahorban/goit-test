@@ -6,7 +6,7 @@ import rectangle from "../../images/Rectangle.png";
 const UserPage = ({
   isLoading,
   handleLoadMore,
-  hendleClick,
+  handleClick,
   users,
   itemsPerPage,
   isActive,
@@ -39,7 +39,7 @@ const UserPage = ({
                 </p>
               </div>
               <button
-                onClick={() => hendleClick(id, following)}
+                onClick={() => handleClick(id, following)}
                 className={`${styles.followBtn} ${
                   following ? styles.active : ""
                 }`}

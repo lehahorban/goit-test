@@ -60,7 +60,7 @@ const UserCard = () => {
     setItemsPerPage(itemsPerPage + 9);
   };
 
-  const hendleClick = async (id, following) => {
+  const handleClick = async (id, following) => {
     try {
       const userIndex = users.findIndex((el) => el.id === id);
       const tweetIndex = filteredTweet.findIndex((tweet) => tweet.id === id);
@@ -132,7 +132,7 @@ const UserCard = () => {
         isLoading={isLoading}
         currentData={currentData}
         handleLoadMore={handleLoadMore}
-        hendleClick={hendleClick}
+        handleClick={handleClick}
         users={users}
         itemsPerPage={itemsPerPage}
         filteredTweet={filteredTweet}
