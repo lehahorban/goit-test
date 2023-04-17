@@ -130,14 +130,11 @@ const UserCard = () => {
       </div>
       <UserPage
         isLoading={isLoading}
-        currentData={currentData}
         handleLoadMore={handleLoadMore}
         handleClick={handleClick}
         users={users}
         itemsPerPage={itemsPerPage}
-        filteredTweet={filteredTweet}
         isActive={isActive}
-        toggleFilter={toggleFilter}
         data={data}
       />
     </div>
